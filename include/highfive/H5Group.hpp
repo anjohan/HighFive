@@ -24,14 +24,9 @@ class Group : public Object,
   public:
     const static ObjectType type = ObjectType::Group;
 
-  protected:
     using Object::Object;
 
     inline Group(Object&& o) noexcept : Object(std::move(o)) {};
-
-    friend class File;
-    friend class Reference;
-    template <typename Derivate> friend class ::HighFive::NodeTraits;
 };
 
 }  // namespace HighFive
