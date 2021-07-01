@@ -13,6 +13,7 @@
 #include "bits/H5_definitions.hpp"
 #include "bits/H5Annotate_traits.hpp"
 #include "bits/H5Node_traits.hpp"
+#include "bits/H5Path_traits.hpp"
 
 namespace HighFive {
 
@@ -20,13 +21,16 @@ namespace HighFive {
 /// \brief Represents an hdf5 group
 class Group : public Object,
               public NodeTraits<Group>,
-              public AnnotateTraits<Group> {
+              public AnnotateTraits<Group>,
+              public PathTraits<Group> {
   public:
     const static ObjectType type = ObjectType::Group;
 
     using Object::Object;
 
-    inline Group(Object&& o) noexcept : Object(std::move(o)) {};
+    H5_DEPRECATED("Default constructor creates unsafe uninitialized objects")
+    Group() = default;
+
 };
 
 }  // namespace HighFive
